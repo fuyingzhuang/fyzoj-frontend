@@ -4,6 +4,11 @@ import { AccessEnum } from "@/access/accessEnum";
 import checkAccess from "@/access/checkAccess";
 
 router.beforeEach(async (to, from, next) => {
+  //如果当前路由是/user开头 就不需要判断权限
+  if (to.path.startsWith("/user")) {
+    next();
+    return;
+  }
   console.log("登陆用户信息", store.state.user.loginUser);
   let loginUser = store.state.user.loginUser;
   // // 如果之前没登陆过，自动登录
