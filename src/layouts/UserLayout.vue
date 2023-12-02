@@ -24,7 +24,6 @@ import UserLayoutHeader from "@/components/UserLayoutHeader.vue";
 }
 
 .content {
-  background-color: #e9eef3;
   margin-top: 20px;
   min-height: 80vh;
 }

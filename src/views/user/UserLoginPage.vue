@@ -5,11 +5,11 @@
       :model="userLoginForm"
       :rules="rules"
       label-width="120px"
-      class="demo-ruleForm"
+      class="user-login-form"
       :size="formSize"
       status-icon
     >
-      <el-form-item label="用户名" prop="userAccount">
+      <el-form-item label="账号" prop="userAccount">
         <el-input v-model="userLoginForm.userAccount" />
       </el-form-item>
       <el-form-item label="密码" prop="userPassword">
@@ -26,6 +26,11 @@
         <el-button @click="resetForm(ruleFormRef)">重置</el-button>
       </el-form-item>
     </el-form>
+    <!--    没有账号 立即注册？-->
+    <div class="login-tip">
+      <span>没有账号？</span>
+      <router-link to="/user/register">立即注册</router-link>
+    </div>
   </div>
 </template>
 
@@ -81,7 +86,7 @@ const userLogin = async () => {
     // 修改store中的用户信息
     await store.dispatch("user/getLoginUser");
     // 跳转到首页
-    router.push({
+    await router.push({
       path: "/",
       replace: true,
     });
@@ -104,4 +109,28 @@ const rules = ref<FormRules>({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+#userLogin {
+  width: 100%;
+  min-height: 640px;
+  padding-top: 100px;
+  /*  设置背景图片*/
+  background-image: url("@/assets/img/back.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.user-login-form {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.login-tip {
+  text-align: center;
+  margin-top: 20px;
+}
+</style>

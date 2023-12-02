@@ -20,10 +20,14 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/user/login",
-        name: "用户注册",
+        name: "用户登录",
         component: UserLoginPage,
       },
     ],
+    //  隐藏
+    meta: {
+      hideInMenu: true,
+    },
   },
   {
     path: "/home",
@@ -41,6 +45,16 @@ const routes: Array<RouteRecordRaw> = [
     component: AdminPage,
     meta: {
       access: AccessEnum.USER,
+    },
+  },
+  //  404页面
+  {
+    path: "/:pathMatch(.*)*",
+    name: "404页面",
+    component: () => import("@/views/NotFoundPage.vue"),
+    //  隐藏
+    meta: {
+      hideInMenu: true,
     },
   },
 ];
