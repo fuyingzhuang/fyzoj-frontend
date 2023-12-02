@@ -6,4 +6,6 @@ import router from "./router";
 import store from "./store";
 import "./api/MyAxios";
 import "./access";
+import "bytemd/dist/index.css";
+
 createApp(App).use(ElementPlus).use(store).use(router).mount("#app");
