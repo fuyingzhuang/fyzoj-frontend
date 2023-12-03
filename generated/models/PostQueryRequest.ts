@@ -10,8 +10,8 @@ export type PostQueryRequest = {
     id?: number;
     notId?: number;
     orTags?: Array<string>;
-    pageSize?: number;
     searchText?: string;
+    size?: number;
     sortField?: string;
     sortOrder?: string;
     tags?: Array<string>;

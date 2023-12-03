@@ -7,8 +7,8 @@ import type { PostQueryRequest } from './PostQueryRequest';
 
 export type PostFavourQueryRequest = {
     current?: number;
-    pageSize?: number;
     postQueryRequest?: PostQueryRequest;
+    size?: number;
     sortField?: string;
     sortOrder?: string;
     userId?: number;

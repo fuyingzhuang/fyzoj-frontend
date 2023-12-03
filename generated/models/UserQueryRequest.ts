@@ -7,7 +7,7 @@ export type UserQueryRequest = {
     current?: number;
     id?: number;
     mpOpenId?: string;
-    pageSize?: number;
+    size?: number;
     sortField?: string;
     sortOrder?: string;
     unionId?: string;

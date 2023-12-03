@@ -1,5 +1,5 @@
 <template>
-  <div id="addQuestionPage">
+  <div id="editQuestionPage">
     <el-form
       ref="ruleFormRef"
       :model="questionInfo"
@@ -131,7 +131,7 @@
 
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleFormRef)">
-          创建
+          确定
         </el-button>
         <el-button @click="resetForm(ruleFormRef)">重置</el-button>
       </el-form-item>
@@ -140,7 +140,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 import { ElInput, ElMessage } from "element-plus";
 
 const formSize = ref("default");
@@ -225,7 +225,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      addQuestion();
+      editQuestion();
     } else {
       console.log("error submit!", fields);
     }
@@ -250,15 +250,17 @@ const resetForm = (formEl: FormInstance | undefined) => {
 };
 
 // 定义一个添加题目的方法
-async function addQuestion() {
-  const res = await QuestionControllerService.addQuestionUsingPost(
+async function editQuestion() {
+  const res = await QuestionControllerService.editQuestionUsingPost(
     questionInfo.value
   );
   if (res.code === 200) {
     ElMessage({
-      message: "添加成功",
+      message: "修改成功",
       type: "success",
     });
+    //  跳转到题目列表页面
+    router.push("/question/list");
   } else {
     ElMessage({
       message: res.message,
@@ -307,10 +309,45 @@ const rules = ref<FormRules>({
   // input: [{ required: true, message: "输入不能为空", trigger: "blur" }],
   // output: [{ required: true, message: "输出不能为空", trigger: "blur" }],
 });
+
+// 引入路由
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+// 根据id查询题目信息
+async function getQuestionInfoById() {
+  const res = await QuestionControllerService.getQuestionUsingGet(
+    router.currentRoute.value.params.id
+  );
+  if (res.code === 200) {
+    questionInfo.value = res.data;
+    //   将判题用例转换为数组
+    questionInfo.value.judgeCase = JSON.parse(
+      questionInfo.value.judgeCase as string
+    );
+    // 将判题配置转换为对象
+    questionInfo.value.judgeConfig = JSON.parse(
+      questionInfo.value.judgeConfig as string
+    );
+    // 将标签转换为数组
+    questionInfo.value.tags = JSON.parse(questionInfo.value.tags as string);
+  } else {
+    ElMessage({
+      message: res.message,
+      type: "error",
+    });
+  }
+}
+
+// 页面初始化的时候调用
+onMounted(() => {
+  getQuestionInfoById();
+});
 </script>
 
 <style scoped>
-#addQuestionPage {
+#editQuestionPage {
 }
 
 .config-item {
