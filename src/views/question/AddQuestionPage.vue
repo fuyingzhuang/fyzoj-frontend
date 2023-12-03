@@ -142,7 +142,10 @@
 <script setup lang="ts">
 import { nextTick, ref } from "vue";
 import { ElInput, ElMessage } from "element-plus";
+// 引入路由
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const formSize = ref("default");
 const ruleFormRef = ref<FormInstance>();
 import type { FormInstance, FormRules } from "element-plus";
@@ -259,6 +262,10 @@ async function addQuestion() {
       message: "添加成功",
       type: "success",
     });
+    //  重置表单
+    resetForm(ruleFormRef.value);
+    //  跳转到题目列表
+    router.push("/question/list");
   } else {
     ElMessage({
       message: res.message,

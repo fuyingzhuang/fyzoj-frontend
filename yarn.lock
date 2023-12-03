@@ -3331,7 +3331,7 @@
   "resolved" "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.594.tgz"
   "version" "1.4.594"
 
-"element-plus@^2.4.3":
+"element-plus@^2.3.4":
   "integrity" "sha512-b3q26j+lM4SBqiyzw8HybybGnP2pk4MWgrnzzzYW5qKQUgV6EG1Zg7nMCfgCVccI8tNvZoTiUHb2mFaiB9qT8w=="
   "resolved" "https://registry.npmjs.org/element-plus/-/element-plus-2.4.3.tgz"
   "version" "2.4.3"
@@ -5445,6 +5445,11 @@
   "integrity" "sha512-23g5BFj4zdQL/b6tor7Ji+QY4pEfNH784BMslY9Qb0UnJWRAt+lQGLYmRaM0KDBwIG23ffEBELhZDP2rhi9f/Q=="
   "resolved" "https://registry.npmmirror.com/module-alias/-/module-alias-2.2.3.tgz"
   "version" "2.2.3"
+
+"moment@^2.29.4":
+  "integrity" "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
+  "version" "2.29.4"
 
 "monaco-editor-webpack-plugin@^7.1.0":
   "integrity" "sha512-ZjnGINHN963JQkFqjjcBtn1XBtUATDZBMgNQhDQwd78w2ukRhFXAPNgWuacaQiDZsUr4h1rWv5Mv6eriKuOSzA=="

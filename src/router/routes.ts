@@ -7,6 +7,7 @@ import UserLoginPage from "@/views/user/UserLoginPage.vue";
 import AddQuestionPage from "@/views/question/AddQuestionPage.vue";
 import EditQuestionPage from "@/views/question/EditQuestionPage.vue";
 import QuestionListPage from "@/views/question/QuestionListPage.vue";
+import QuestionBrowsePage from "@/views/question/QuestionBrowsePage.vue";
 import UserLayout from "@/layouts/UserLayout.vue";
 import { AccessEnum } from "@/access/accessEnum";
 
@@ -54,6 +55,14 @@ const routes: Array<RouteRecordRaw> = [
     path: "/question/add",
     name: "添加题目",
     component: AddQuestionPage,
+    meta: {
+      access: AccessEnum.USER,
+    },
+  },
+  {
+    path: "/question/browse",
+    name: "浏览题目",
+    component: QuestionBrowsePage,
     meta: {
       access: AccessEnum.USER,
     },
