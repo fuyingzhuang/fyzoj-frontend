@@ -28,7 +28,12 @@
         <el-button type="primary" @click="searchQuestion">搜索</el-button>
       </el-form-item>
     </el-form>
-    <el-table :data="questionListResponse" border style="width: 100%">
+    <el-table
+      :data="questionListResponse"
+      border
+      style="width: 100%"
+      class="question-page-table"
+    >
       <el-table-column prop="title" label="题目标题" width="180" />
       <el-table-column prop="tags" label="题目标签" width="180">
         <template #default="{ row }">
@@ -216,5 +221,10 @@ onMounted(() => {
 .page {
   margin-left: 50%;
   margin-top: 20px;
+}
+
+.question-page-table {
+  margin: 20px auto;
+  text-align: center;
 }
 </style>
