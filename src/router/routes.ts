@@ -9,6 +9,7 @@ import EditQuestionPage from "@/views/question/EditQuestionPage.vue";
 import QuestionListPage from "@/views/question/QuestionListPage.vue";
 import QuestionBrowsePage from "@/views/question/QuestionBrowsePage.vue";
 import DoQuestionPage from "@/views/question/DoQuestionPage.vue";
+import QuestionSubmitListPage from "@/views/question/QuestionSubmitListPage.vue";
 import UserLayout from "@/layouts/UserLayout.vue";
 import { AccessEnum } from "@/access/accessEnum";
 
@@ -91,6 +92,14 @@ const routes: Array<RouteRecordRaw> = [
     path: "/question/list",
     name: "题目列表",
     component: QuestionListPage,
+    meta: {
+      access: AccessEnum.USER,
+    },
+  },
+  {
+    path: "/question/submit/list",
+    name: "题目提交列表",
+    component: QuestionSubmitListPage,
     meta: {
       access: AccessEnum.USER,
     },

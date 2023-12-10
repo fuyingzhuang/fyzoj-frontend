@@ -76,6 +76,7 @@
             <CodeEditor
               v-model:value="questionSubmitRequest.code"
               :handle-change="onCodeChange"
+              :language="questionSubmitRequest.language"
               style="min-height: 400px"
             />
           </el-card>
@@ -97,7 +98,10 @@
 import { ref, onMounted } from "vue";
 //引入路由
 import { useRouter } from "vue-router";
-import { QuestionControllerService } from "../../../generated";
+import {
+  QuestionControllerService,
+  QuestionSubmitControllerService,
+} from "../../../generated";
 import { ElMessage } from "element-plus";
 import ViewMarkDown from "@/components/ViewMarkDown.vue";
 import CodeEditor from "@/components/CodeEditor.vue";
@@ -152,37 +156,53 @@ const getQuestionDetail = async () => {
 // 定义一个提供给CodeEditor组件的语言列表
 const languageList = ref([
   {
-    label: "C",
-    value: "C",
+    label: "cpp",
+    value: "cpp",
   },
   {
-    label: "C++",
-    value: "C++",
+    label: "go",
+    value: "go",
   },
   {
-    label: "Java",
-    value: "Java",
+    label: "java",
+    value: "java",
   },
   {
-    label: "Python",
-    value: "Python",
+    label: "python",
+    value: "python",
   },
 ]);
 
 // 定义一个题目提交的对象
 const questionSubmitRequest = ref({
-  questionId: "",
   code: "",
-  language: "Java",
+  language: "java",
+  questionId: 0,
+  status: 0,
+  userId: 0,
 });
 //
 const onCodeChange = (v: string) => {
-  questionSubmitRequest.value.content = v;
+  questionSubmitRequest.value.code = v;
 };
 
 // 定义一个提交题目的方法
 const submitQuestion = async () => {
-  console.log(questionSubmitRequest.value);
+  questionSubmitRequest.value.questionId = questionDetailResponse.value.id;
+  const res = await QuestionSubmitControllerService.addQuestionSubmitUsingPost(
+    questionSubmitRequest.value
+  );
+  if (res.code === 200) {
+    ElMessage({
+      message: res.message,
+      type: "success",
+    });
+  } else {
+    ElMessage({
+      message: res.message,
+      type: "error",
+    });
+  }
 };
 onMounted(() => {
   getQuestionDetail();
